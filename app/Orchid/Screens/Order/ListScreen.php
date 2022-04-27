@@ -21,7 +21,7 @@ class ListScreen extends Screen
     {
         return [
             'orders' => Order::defaultSort('id', 'desc')
-                ->with(['video', 'customer', 'display'])
+                ->with(['video', 'customer', 'displays'])
                 ->filtersApplySelection(FilterSelection::class)
                 ->filters()
                 ->paginate(),

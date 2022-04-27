@@ -8,8 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 use Orchid\Screen\AsSource;
 use Orchid\Filters\Filterable;
 
-use Carbon\Carbon;
-
 class Order extends Model
 {
     use HasFactory;
@@ -41,8 +39,6 @@ class Order extends Model
         'price',
         'status',
         'order_type',
-        'payment_type',
-        'display_id',
         'customer_id',
         'video_id',
         'is_active'
@@ -59,12 +55,10 @@ class Order extends Model
         'end_at',
         'status',
         'order_type',
-        'payment_type',
-        'display_id',
         'customer_id',
         'video_id',
         'is_active'
-    ];
+    ]; 
 
     /**
      * The attributes for which you can use filters in url.
@@ -78,7 +72,6 @@ class Order extends Model
         'status',
         'order_type',
         'payment_type',
-        'display_id',
         'customer_id',
         'video_id',
         'is_active',
@@ -104,9 +97,9 @@ class Order extends Model
         return $this->hasOne(Video::class, 'id', 'video_id');
     }
 
-    public function display()
+    public function displays()
     {
-        return $this->hasOne(Display::class, 'id', 'video_id');
+        return $this->belongsToMany(Display::class, 'order_displays');
     }
 }
  

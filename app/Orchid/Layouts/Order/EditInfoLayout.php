@@ -46,6 +46,10 @@ class EditInfoLayout extends Rows
                 ->rows(5),
 
             Group::make([
+                Select::make('order.status')
+                ->options(Order::STATUS)
+                ->title('Статус оплаты'),  
+
                 Select::make('order.order_type')
                     ->options(Order::ORDER_TYPE)
                     ->title('Тип заказа'),
@@ -54,16 +58,6 @@ class EditInfoLayout extends Rows
                     ->title('Стоимость')
                     ->placeholder('Стоимость')
             ])->fullWidth(),
-
-            Group::make([
-                Select::make('order.payment_type')
-                    ->options(Order::PAYMENT_TYPE)
-                    ->title('Способ оплаты'),   
-
-                Select::make('order.status')
-                    ->options(Order::STATUS)
-                    ->title('Статус оплаты'),  
-            ]),
 
             Switcher::make('order.is_active')
                 ->sendTrueOrFalse()

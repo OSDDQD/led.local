@@ -65,12 +65,14 @@ class Display extends Model
 
     public function orders()
     {
-        return $this->hasMany(Order::class, 'display_id', 'id');
+        return $this->belongsToMany(Order::class);
     }
 
     public function activeOrders()
     {
-        return $this->hasMany(Order::class, 'display_id', 'id')->where('end_at', '>', now()->format('Y-m-d'));
+        return $this->belongsToMany(Order::class)
+            ->join('orders', 'orders.id', 'order_displays.order_id')
+            ->where('orders.end_at', '>', now()->format('Y-m-d'));
     }
 
     public function city()

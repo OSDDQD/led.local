@@ -92,7 +92,7 @@ class EditScreen extends Screen
                 'required',
                 Rule::exists('customers', 'id'),
             ],
-            'order.display_id' => [
+            'order.displays.' => [
                 Rule::exists('displays', 'id'),
             ],
             'order.video_id' => [
@@ -101,8 +101,10 @@ class EditScreen extends Screen
         ]);
 
         $order->fill($request->get('order'));
-
+        
         $order->save();
+
+        $order->displays()->sync($request->input('order.displays'));
 
         Toast::info(__('Order was saved'));
 

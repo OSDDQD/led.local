@@ -38,10 +38,11 @@ class EditAdditionalLayout extends Rows
     protected function fields(): iterable
     {
         return [
-            Select::make('order.display_id')
+            Select::make('order.displays.')
                 ->fromModel(Display::class, 'title')
+                ->multiple()
                 ->title(__('Экран'))
-                ->help('Выберите экран, на котором будет показан данный заказ'),
+                ->help('Выберите экраны, на которых будет показан данный заказ'),
 
             Select::make('order.video_id')
                 ->fromModel(Video::class, 'title')
