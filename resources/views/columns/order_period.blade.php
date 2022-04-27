@@ -9,7 +9,7 @@
         <i class="text-danger circle">● прошло</i>
     @endif
 @endif
-@if(!$order->start && !$order->end_at)
-    Информация не указана
+@if(!$order->start_at && !$order->end_at)
+    <div><span class="text-muted">Действие договора:</span> Информация не указана<div>
 @endif
 

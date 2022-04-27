@@ -46,10 +46,16 @@ class EditInfoLayout extends Rows
                 ->rows(5),
 
             Group::make([
-                Select::make('order.status')
-                ->options(Order::STATUS)
-                ->title('Статус оплаты'),  
+                Input::make('order.deal_start_at')
+                    ->type('date')
+                    ->title('Дата начала действия договора'),
 
+                Input::make('order.deal_end_at')
+                    ->type('date')
+                    ->title('Дата окончания действия договора'),
+            ]),
+
+            Group::make([
                 Select::make('order.order_type')
                     ->options(Order::ORDER_TYPE)
                     ->title('Тип заказа'),

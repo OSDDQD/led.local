@@ -23,6 +23,11 @@ class ListLayout extends Table
     protected $target = 'orders';
 
     /**
+     * @var string
+     */
+    protected $template = 'layouts.table';
+
+    /**
      * Get the table cells to be displayed.
      *
      * @return TD[]
@@ -30,7 +35,7 @@ class ListLayout extends Table
     protected function columns(): iterable
     {
         return [
-            TD::make('title', __('# договора'))
+            TD::make('title', __('№ договора'))
                 ->sort()
                 ->cantHide()
                 ->filter(Input::make())

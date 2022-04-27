@@ -32,15 +32,15 @@ class EditVideoLayout extends Rows
                 ->placeholder('Длительность ролика')
                 ->help('Укажите длительность ролика в секундах'),
 
-            Input::make('video.width')
-                ->title('Ширина ролика')
-                ->placeholder('Ширина ролика')
-                ->help('Укажите ширину ролика в пикселях'),
+            // Input::make('video.width')
+            //     ->title('Ширина ролика')
+            //     ->placeholder('Ширина ролика')
+            //     ->help('Укажите ширину ролика в пикселях'),
 
-            Input::make('video.height')
-                ->title('Высота ролика')
-                ->placeholder('Высота ролика')
-                ->help('Укажите высоту ролика в пикселях'),
+            // Input::make('video.height')
+            //     ->title('Высота ролика')
+            //     ->placeholder('Высота ролика')
+            //     ->help('Укажите высоту ролика в пикселях'),
         ];
     }
 }

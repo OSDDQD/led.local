@@ -41,7 +41,9 @@ class Order extends Model
         'order_type',
         'customer_id',
         'video_id',
-        'is_active'
+        'is_active',
+        'deal_start_at',
+        'deal_end_at',
     ];
 
     /**
@@ -75,7 +77,8 @@ class Order extends Model
         'customer_id',
         'video_id',
         'is_active',
-        'active'
+        'deal_start_at',
+        'deal_end_at',
     ];
 
     /**
