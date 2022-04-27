@@ -8,6 +8,7 @@ use Orchid\Screen\Actions\Link;
 use Orchid\Support\Facades\Toast;
 use Illuminate\Http\Request;
 use App\Orchid\Layouts\Display\ListLayout;
+use App\Orchid\Layouts\Display\FilterSelection;
 
 class ListScreen extends Screen
 {
@@ -19,7 +20,11 @@ class ListScreen extends Screen
     public function query(): iterable
     {
         return [
-            'displays' => Display::defaultSort('id', 'desc')->paginate(),
+            'displays' => Display::defaultSort('id', 'desc')
+                ->with(['orders', 'activeOrders', 'city'])
+                ->filtersApplySelection(FilterSelection::class)
+                ->filters()
+                ->paginate(),
         ];
     }
 
@@ -55,6 +60,7 @@ class ListScreen extends Screen
     public function layout(): iterable
     {
         return [
+            FilterSelection::class,
             ListLayout::class
         ];
     }

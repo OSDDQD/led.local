@@ -10,6 +10,7 @@ use App\Orchid\Screens\City\EditScreen as CityEditScreen;
 
 use App\Orchid\Screens\Customer\ListScreen as CustomerListScreen;
 use App\Orchid\Screens\Customer\EditScreen as CustomerEditScreen;
+use App\Orchid\Screens\Customer\ShowScreen as CustomerShowScreen;
 
 use App\Orchid\Screens\Display\ListScreen as DisplayListScreen;
 use App\Orchid\Screens\Display\EditScreen as DisplayEditScreen;
@@ -46,6 +47,15 @@ Route::screen('customers/{customer}/edit', CustomerEditScreen::class)
         return $trail
             ->parent('platform.customers')
             ->push(__('Заказчик'), route('platform.customers.edit', $customer));
+    });
+
+// Platform > Customers > Show
+Route::screen('customers/{customer}/show', CustomerShowScreen::class)
+    ->name('platform.customers.show')
+    ->breadcrumbs(function (Trail $trail, $customer) {
+        return $trail
+            ->parent('platform.customers')
+            ->push(__('Информация о заказчике'), route('platform.customers.show', $customer));
     });
 
 // Platform > City

@@ -33,6 +33,17 @@ class Customer extends Model
     ];
 
     /**
+     * The attributes for which you can use filters in url.
+     *
+     * @var array
+     */
+    protected $allowedFilters = [
+        'title',
+        'description',
+        'contacts'
+    ];
+
+    /**
      * The attributes that should be cast to native types.
      *
      * @var array

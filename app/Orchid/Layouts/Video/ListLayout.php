@@ -37,14 +37,15 @@ class ListLayout extends Table
 
             TD::make('customer_id', __('Заказчик'))
                 ->sort()
-                ->filter(Input::make())
                 ->cantHide()
                 ->render(function (Video $video) {
                     return $video->customer->title;
                 }),
 
-            TD::make('duration', __('Длительность'))
-                ->sort(),
+            TD::make('info', __('Информация'))
+                ->render(function (Video $video) {
+                    return view('columns.video_info', ['video' => $video]);
+                }),
 
             TD::make('is_active', __('Статус'))
                 ->sort() 

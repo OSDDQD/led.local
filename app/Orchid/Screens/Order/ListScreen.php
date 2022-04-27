@@ -4,6 +4,7 @@ namespace App\Orchid\Screens\Order;
 
 use Orchid\Screen\Screen;
 use App\Models\Order;
+use App\Orchid\Layouts\Order\FilterSelection;
 use Orchid\Screen\Actions\Link;
 use Orchid\Support\Facades\Toast;
 use Illuminate\Http\Request;
@@ -19,7 +20,11 @@ class ListScreen extends Screen
     public function query(): iterable
     {
         return [
-            'orders' => Order::defaultSort('id', 'desc')->paginate(),
+            'orders' => Order::defaultSort('id', 'desc')
+                ->with(['video', 'customer', 'display'])
+                ->filtersApplySelection(FilterSelection::class)
+                ->filters()
+                ->paginate(),
         ];
     }
 
@@ -55,6 +60,7 @@ class ListScreen extends Screen
     public function layout(): iterable
     {
         return [
+            FilterSelection::class,
             ListLayout::class
         ];
     }

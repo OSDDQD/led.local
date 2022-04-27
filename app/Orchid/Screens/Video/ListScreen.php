@@ -3,6 +3,7 @@
 namespace App\Orchid\Screens\Video;
 
 use App\Models\Video;
+use App\Orchid\Layouts\Video\FilterSelection;
 use Orchid\Screen\Screen;
 use Orchid\Screen\Actions\Link;
 use Orchid\Support\Facades\Toast;
@@ -19,7 +20,11 @@ class ListScreen extends Screen
     public function query(): iterable
     {
         return [
-            'videos' => Video::defaultSort('id', 'desc')->paginate(),
+            'videos' => Video::defaultSort('id', 'desc')
+                ->with(['orders', 'customer'])
+                ->filtersApplySelection(FilterSelection::class)
+                ->filters()
+                ->paginate(),
         ];
     }
 
@@ -54,6 +59,7 @@ class ListScreen extends Screen
     public function layout(): iterable
     {
         return [
+            FilterSelection::class,
             ListLayout::class
         ];
     }

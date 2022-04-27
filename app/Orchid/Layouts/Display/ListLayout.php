@@ -2,6 +2,7 @@
 
 namespace App\Orchid\Layouts\Display;
 
+use App\Models\City;
 use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\TD;
 use Orchid\Screen\Actions\Button;
@@ -9,6 +10,7 @@ use Orchid\Screen\Actions\DropDown;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Fields\Input;
 use App\Models\Display;
+use Orchid\Screen\Fields\Select;
 
 class ListLayout extends Table
 {
@@ -33,24 +35,26 @@ class ListLayout extends Table
             TD::make('title', __('Наименование'))
                 ->sort()
                 ->cantHide()
-                ->filter(Input::make()),
-
-            TD::make('size', __('Размер экрана'))
+                ->filter(Input::make())
                 ->render(function (Display $display) {
-                    return view('columns.size', ['display' => $display]);
+                    return view('columns.display_title', ['display' => $display]);
                 }),
 
-            TD::make('is_active', __('Статус'))
-                ->sort()
-                ->cantHide()
-                ->bool(),
+            TD::make('size', __('Заказы'))
+                ->render(function (Display $display) {
+                    return view('columns.display_orders', ['display' => $display]);
+                }),
 
-            TD::make('city_id', __('Город'))
+            TD::make('size', __('Информация'))
+                ->render(function (Display $display) {
+                    return view('columns.display_info', ['display' => $display]);
+                }),
+
+            TD::make('city_id', __('Локация'))
                 ->sort()
-                ->filter(Input::make())
                 ->cantHide()
                 ->render(function (Display $display) {
-                    return $display->city->title;
+                    return view('columns.display_location', ['display' => $display]);
                 }),
 
             TD::make(__('Действия'))

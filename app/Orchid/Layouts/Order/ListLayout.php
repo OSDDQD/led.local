@@ -9,6 +9,8 @@ use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\DropDown;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Fields\Input;
+use App\Orchid\Layouts\Order\FilterSelection;
+use App\Orchid\Filters\DisplayFilter;
 
 class ListLayout extends Table
 {
@@ -30,39 +32,30 @@ class ListLayout extends Table
     protected function columns(): iterable
     {
         return [
-            TD::make('title', __('Наименование'))
+            TD::make('title', __('# договора'))
                 ->sort()
                 ->cantHide()
-                ->filter(Input::make()),
+                ->filter(Input::make())
+                ->render(function (Order $order) {
+                    return view('columns.order_info', ['order' => $order]);
+                }),
 
             TD::make('display_id', __('Экран'))
                 ->sort()
                 ->cantHide()
-                ->filter(Input::make())
                 ->render(function (Order $order) {
-                    return $order->display->title;
+                    return view('columns.order_display', ['order' => $order]);
                 }),
 
-            TD::make('customer_id', __('Заказчик'))
-                ->sort()
-                ->cantHide()
-                ->filter(Input::make())
+            TD::make('is_active', __('Период показа'))
                 ->render(function (Order $order) {
-                    return $order->customer->title;
+                    return view('columns.order_period', ['order' => $order]);
                 }),
 
-            TD::make('video_id', __('Видео'))
-                ->sort()
-                ->cantHide()
-                ->filter(Input::make())
+            TD::make('is_active', __('Информация'))
                 ->render(function (Order $order) {
-                    return $order->video->title;
+                    return view('columns.order_desc', ['order' => $order]);
                 }),
-
-            TD::make('is_active', __('Статус'))
-                ->sort()
-                ->cantHide()
-                ->bool(),
 
             TD::make(__('Действия'))
                 ->cantHide()

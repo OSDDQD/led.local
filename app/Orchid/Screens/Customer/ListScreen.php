@@ -19,7 +19,10 @@ class ListScreen extends Screen
     public function query(): iterable
     {
         return [
-            'customers' =>  Customer::defaultSort('id', 'desc')->paginate(),
+            'customers' =>  Customer::defaultSort('id', 'desc')
+                ->filters()
+                ->with(['videos', 'orders'])
+                ->paginate(),
         ];
     }
 

@@ -33,9 +33,20 @@ class ListLayout extends Table
             TD::make('title', __('Заказчик'))
                 ->sort()
                 ->cantHide()
-                ->filter(Input::make()),
+                ->filter(Input::make())
+                ->render(function(Customer $customer) {
+                    return view('columns.customer_title', ['customer' => $customer]);
+                }),
 
-            TD::make('description', __('Описание')),
+            TD::make('contacts', __('Контактная информация'))
+                ->render(function(Customer $customer) {
+                    return view('columns.customer_contact', ['customer' => $customer]);
+                }),
+
+            TD::make('additional', __('Дополнительная информация'))
+                ->render(function(Customer $customer) {
+                    return view('columns.customer_additional', ['customer' => $customer]);
+                }),
 
             TD::make(__('Действия'))
                 ->cantHide()

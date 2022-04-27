@@ -67,6 +67,25 @@ class Order extends Model
     ];
 
     /**
+     * The attributes for which you can use filters in url.
+     *
+     * @var array
+     */
+    protected $allowedFilters = [
+        'title',
+        'start_at',
+        'end_at',
+        'status',
+        'order_type',
+        'payment_type',
+        'display_id',
+        'customer_id',
+        'video_id',
+        'is_active',
+        'active'
+    ];
+
+    /**
      * The attributes that should be cast to native types.
      *
      * @var array

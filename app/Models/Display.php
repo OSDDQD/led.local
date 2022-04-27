@@ -43,6 +43,18 @@ class Display extends Model
     ];
 
     /**
+     * The attributes for which you can use filters in url.
+     *
+     * @var array
+     */
+    protected $allowedFilters = [
+        'title',
+        'description',
+        'location', 
+        'city_id',
+        'is_active'
+    ];
+    /**
      * The attributes that should be cast to native types.
      *
      * @var array
@@ -54,6 +66,11 @@ class Display extends Model
     public function orders()
     {
         return $this->hasMany(Order::class, 'display_id', 'id');
+    }
+
+    public function activeOrders()
+    {
+        return $this->hasMany(Order::class, 'display_id', 'id')->where('end_at', '>', now()->format('Y-m-d'));
     }
 
     public function city()
