@@ -39,7 +39,9 @@ class DisplayFilter extends Filter
      */
     public function run(Builder $builder): Builder
     {
-        return $builder->where('display_id', $this->request->get('display_id'));
+        return $builder->whereHas('displays', function (Builder $query) {
+            $query->where('id', $this->request->get('display_id'));
+        });
     }
 
     /**
