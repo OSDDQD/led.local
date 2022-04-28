@@ -67,5 +67,10 @@ class Video extends Model
     {
         return $this->hasMany(Order::class, 'video_id', 'id');
     }
+
+    public function getTitleCustomerAttribute()
+    {
+        return $this->title . ' - ' . $this?->customer?->title;
+    }
 }
  

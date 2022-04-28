@@ -84,6 +84,10 @@ class EditScreen extends Screen
             'order.title' => [
                 'required',
             ],
+            'order.price' => [
+                'nullable',
+                'integer',
+            ],
             'order.is_active' => [
                 'required',
                 'boolean'

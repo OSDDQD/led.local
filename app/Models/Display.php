@@ -63,6 +63,8 @@ class Display extends Model
         'is_active' => 'boolean',
     ];
 
+    protected $appends = ['title_location'];
+
     public function orders()
     {
         return $this->belongsToMany(Order::class, 'order_displays');
@@ -79,5 +81,10 @@ class Display extends Model
     public function city()
     {
         return $this->hasOne(City::class, 'id', 'city_id');
+    }
+
+    public function getTitleLocationAttribute()
+    {
+        return $this->title . ' - ' . $this?->city?->title;
     }
 }

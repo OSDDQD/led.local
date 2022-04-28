@@ -39,14 +39,15 @@ class EditAdditionalLayout extends Rows
     {
         return [
             Select::make('order.displays.')
-                ->fromModel(Display::class, 'title')
+                ->options(Display::orderBy('title')->get()->pluck('title_location', 'id')->toArray())
                 ->multiple()
-                ->title(__('Экран'))
+                ->empty()
+                ->title(__('Экраны'))
                 ->help('Выберите экраны, на которых будет показан данный заказ'),
 
             Group::make([
                 Select::make('order.video_id')
-                    ->fromModel(Video::class, 'title')
+                    ->options(Video::orderBy('title')->get()->pluck('title_customer', 'id')->toArray())
                     ->title(__('Видео'))
                     ->help('Выберите видео, которое будет использоваться в данном заказе'),
 

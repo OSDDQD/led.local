@@ -1,3 +1,6 @@
+@if($order->price)
+    <div><span class="text-muted">Стоимость:</span> {{ number_format($order->price) }}<div>
+@endif
 <div><span class="text-muted">Статус оплаты:</span> 
     @if($order->status)
         <i class="text-success circle">{{ $order::STATUS[$order->status] }}</i>

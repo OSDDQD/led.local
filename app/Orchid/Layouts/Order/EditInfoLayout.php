@@ -30,10 +30,10 @@ class EditInfoLayout extends Rows
     {
         return [
             Input::make('order.title')
-                ->title('Наименование')
-                ->placeholder('Наименование')
+                ->title('Номер договора')
+                ->placeholder('Впишите номер договора')
                 ->required()
-                ->help('Укажите название для данного заказа'),
+                ->help('Укажите номер договора для данного заказа'),
 
             Select::make('order.customer_id')
                 ->fromModel(Customer::class, 'title')
