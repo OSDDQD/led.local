@@ -41,7 +41,6 @@ class EditAdditionalLayout extends Rows
             Select::make('order.displays.')
                 ->options(Display::orderBy('title')->get()->pluck('title_location', 'id')->toArray())
                 ->multiple()
-                ->empty()
                 ->title(__('Экраны'))
                 ->help('Выберите экраны, на которых будет показан данный заказ'),
 
