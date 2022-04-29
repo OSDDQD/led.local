@@ -13,6 +13,7 @@ use App\Models\Video;
 use App\Models\Display;
 use App\Models\Order;
 use Orchid\Screen\Fields\Group;
+use Orchid\Screen\Fields\Relation;
 
 class EditAdditionalLayout extends Rows
 {
@@ -38,15 +39,19 @@ class EditAdditionalLayout extends Rows
     protected function fields(): iterable
     {
         return [
-            Select::make('order.displays.')
-                ->options(Display::orderBy('title')->get()->pluck('title_location', 'id')->toArray())
+            Relation::make('order.displays.')
+                ->fromModel(Display::class, 'title')
+                ->displayAppend('title_location')
+                // ->options($displays)
+                ->empty()
                 ->multiple()
                 ->title(__('Экраны'))
                 ->help('Выберите экраны, на которых будет показан данный заказ'),
 
             Group::make([
-                Select::make('order.video_id')
-                    ->options(Video::orderBy('title')->get()->pluck('title_customer', 'id')->toArray())
+                Relation::make('order.video_id')
+                    ->fromModel(Video::class, 'title')
+                    ->displayAppend('title_customer')
                     ->title(__('Видео'))
                     ->help('Выберите видео, которое будет использоваться в данном заказе'),
 
