@@ -48,26 +48,20 @@ class EditAdditionalLayout extends Rows
                 ->title(__('Экраны'))
                 ->help('Выберите экраны, на которых будет показан данный заказ'),
 
-            Group::make([
-                Relation::make('order.video_id')
-                    ->fromModel(Video::class, 'title')
-                    ->displayAppend('title_customer')
-                    ->title(__('Видео'))
-                    ->help('Выберите видео, которое будет использоваться в данном заказе'),
+            Relation::make('order.video_id')
+                ->fromModel(Video::class, 'title')
+                ->displayAppend('title_customer')
+                ->title(__('Видео'))
+                ->help('Выберите видео, которое будет использоваться в данном заказе'),
 
+            Group::make([
                 Select::make('order.status')
                     ->options(Order::STATUS)
                     ->title('Статус оплаты'),  
-            ]),
 
-            Group::make([
-                Input::make('order.start_at')
-                    ->type('date')
-                    ->title('Дата начала оплаченного периода'),
-
-                Input::make('order.end_at')
-                    ->type('date')
-                    ->title('Дата окончания оплаченного периода'),
+                Select::make('order.payed_for')
+                    ->options(Order::MONTH_RANGE)
+                    ->title('Оплачено до'),
             ]),
 
             Input::make('order.notify_days')

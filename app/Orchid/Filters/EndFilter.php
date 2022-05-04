@@ -16,7 +16,7 @@ class EndFilter extends Filter
      */
     public function name(): string
     {
-        return 'Окончание показа';
+        return 'Окончание договора';
     }
 
     /**
@@ -26,7 +26,7 @@ class EndFilter extends Filter
      */
     public function parameters(): ?array
     {
-        return ['end_at'];
+        return ['deal_end_at'];
     }
 
     /**
@@ -38,7 +38,7 @@ class EndFilter extends Filter
      */
     public function run(Builder $builder): Builder
     {
-        return $builder->where('end_at', '<=', $this->request->get('end_at'));
+        return $builder->where('deal_end_at', '<=', $this->request->get('deal_end_at'));
     }
 
     /**
@@ -49,8 +49,8 @@ class EndFilter extends Filter
     public function display(): iterable
     {
         return [
-            DateTimer::make('end_at')
-                ->value($this->request->get('end_at'))
+            DateTimer::make('deal_end_at')
+                ->value($this->request->get('deal_end_at'))
                 ->placeholder('Выберите дату')
                 ->format('Y-m-d'),
         ];

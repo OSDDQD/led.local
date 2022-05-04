@@ -43,19 +43,18 @@ class ListLayout extends Table
                     return view('columns.order_info', ['order' => $order]);
                 }),
 
-            TD::make('display_id', __('Экран'))
-                ->sort()
+            TD::make('displays', __('Экраны'))
                 ->cantHide()
                 ->render(function (Order $order) {
                     return view('columns.order_display', ['order' => $order]);
                 }),
 
-            TD::make('is_active', __('Период показа'))
-                ->render(function (Order $order) {
-                    return view('columns.order_period', ['order' => $order]);
-                }),
+            // TD::make('show_info', __('Период показа'))
+            //     ->render(function (Order $order) {
+            //         return view('columns.order_period', ['order' => $order]);
+            //     }),
 
-            TD::make('is_active', __('Информация'))
+            TD::make('info', __('Информация'))
                 ->render(function (Order $order) {
                     return view('columns.order_desc', ['order' => $order]);
                 }),

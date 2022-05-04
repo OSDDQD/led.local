@@ -16,7 +16,7 @@ class StartFilter extends Filter
      */
     public function name(): string
     {
-        return 'Начало показа';
+        return 'Начало договора';
     }
 
     /**
@@ -26,7 +26,7 @@ class StartFilter extends Filter
      */
     public function parameters(): ?array
     {
-        return ['start_at'];
+        return ['deal_start_at'];
     }
 
     /**
@@ -38,7 +38,7 @@ class StartFilter extends Filter
      */
     public function run(Builder $builder): Builder
     {
-        return $builder->where('start_at', '>=', $this->request->get('start_at'));
+        return $builder->where('deal_start_at', '>=', $this->request->get('deal_start_at'));
     }
 
     /**
@@ -49,8 +49,8 @@ class StartFilter extends Filter
     public function display(): iterable
     {
         return [
-            DateTimer::make('start_at')
-                ->value($this->request->get('start_at'))
+            DateTimer::make('deal_start_at')
+                ->value($this->request->get('deal_start_at'))
                 ->placeholder('Выберите дату')
                 ->format('Y-m-d'),
         ];

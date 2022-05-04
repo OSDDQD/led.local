@@ -21,21 +21,35 @@ class Order extends Model
     ];
     const STATUS = [
         0 => 'В ожидании оплаты',
-        1 => 'Оплачено'
+        1 => 'Оплачено полностью',
+        2 => 'Оплачено до'
     ];
     const PAYMENT_TYPE = [
         0 => 'За месяц',
         1 => 'Единоразово'
     ];
 
+    const MONTH_RANGE = [
+        'january' => 'Январь',
+        'february' => 'Февраль',
+        'march' => 'Март',
+        'april' => 'Апрель',
+        'may' => 'Май',
+        'june' => 'Июнь',
+        'july' => 'Июль',
+        'august' => 'Август',
+        'september' => 'Сентябрь',
+        'october' => 'Октябрь',
+        'november' => 'Ноябрь',
+        'december' => 'Декабрь',
+    ];
     /**
      * @var array
      */ 
     protected $fillable = [
         'title',
         'description',
-        'start_at', 
-        'end_at',
+        'payed_for', 
         'notify_days',
         'price',
         'status',
@@ -54,8 +68,6 @@ class Order extends Model
      */
     protected $allowedSorts = [
         'title',
-        'start_at',
-        'end_at',
         'status',
         'order_type',
         'customer_id',
@@ -70,8 +82,6 @@ class Order extends Model
      */
     protected $allowedFilters = [
         'title',
-        'start_at',
-        'end_at',
         'status',
         'order_type',
         'payment_type',
