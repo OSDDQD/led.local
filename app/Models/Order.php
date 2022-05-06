@@ -17,7 +17,8 @@ class Order extends Model
     const ORDER_TYPE = [
         0 => 'Коммерческий',
         1 => 'Бонусный',
-        2 => 'Индивидуальный'
+        2 => 'Индивидуальный',
+        3 => 'Социальный'
     ];
     const STATUS = [
         0 => 'В ожидании оплаты',
@@ -28,7 +29,6 @@ class Order extends Model
         0 => 'За месяц',
         1 => 'Единоразово'
     ];
-
     const MONTH_RANGE = [
         'january' => 'Январь',
         'february' => 'Февраль',

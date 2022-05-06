@@ -16,12 +16,15 @@ return new class extends Migration
         Schema::create('order_displays', function (Blueprint $table) {
             $table->unsignedBigInteger('order_id');
             $table->unsignedBigInteger('display_id');
+
             $table->primary(['order_id', 'display_id']);
+            
             $table->foreign('order_id')
                 ->references('id')
                 ->on('orders')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
+
             $table->foreign('display_id')
                 ->references('id')
                 ->on('displays')

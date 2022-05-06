@@ -39,10 +39,10 @@ class ActiveOrdersFilter extends Filter
     public function run(Builder $builder): Builder
     {
         return $builder->when($this->request->get('active'), function (Builder $query) {
-            $query->where('end_at', '>=', now()->format('Y-m-d'));
+            $query->where('deal_end_at', '>=', now()->format('Y-m-d'));
         })
         ->when(!$this->request->get('active'), function (Builder $query) {
-            $query->where('end_at', '<', now()->format('Y-m-d'));
+            $query->where('deal_end_at', '<', now()->format('Y-m-d'));
         });
     }
 

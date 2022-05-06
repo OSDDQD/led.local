@@ -5,7 +5,7 @@
     @if($order->status == 1)
         <i class="text-success circle">{{ $order::STATUS[$order->status] }}</i>
     @elseif($order->status == 2)
-        <i class="text-danger circle">
+        <i class="text-success circle">
             {{ $order::STATUS[$order->status] }} 
             @if(isset($order::MONTH_RANGE[$order->payed_for]))
                 <strong>{{ $order::MONTH_RANGE[$order->payed_for] }}</strong>
