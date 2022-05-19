@@ -60,6 +60,7 @@ class EditAdditionalLayout extends Rows
                     ->title('Статус оплаты'),  
 
                 Select::make('order.payed_for')
+                    ->empty()
                     ->options(Order::MONTH_RANGE)
                     ->title('Оплачено до'),
             ]),
